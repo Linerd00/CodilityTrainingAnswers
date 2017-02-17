@@ -53,36 +53,19 @@
  **********************************************************/
 
 function solution(X, A) {
-    // write your code in JavaScript (Node.js 6.4.0)
-    var gotMissingInt = false
-    var result = -1
-    var clonedA = A.slice(0)
-    var sortedArray = clonedA.sort(function(a,b){ return a - b })
-    // console.log("sortedArray=" + sortedArray)
-    var min = 1
-    
-    //1. check if got missing integer
-    for(var i = 1; i <= sortedArray.length; i++){
-        if(min < sortedArray[i]){
-            gotMissingInt = true
-            return -1
-        }else if(min > sortedArray[i]){
-            continue
-        }else{
-            min++    
-        }
-    }
-    
-    //2. find out the A[result] == X
-    // console.log("gotMissingInt=" + gotMissingInt)
-    if(!gotMissingInt){
-        for(var i = 0; i < A.length; i++){
-            if(A[i] == X){
-                result = i
-                break
+    var sum = 0;
+    var expected = (X * (X + 1)) / 2;	//等差数列求和
+    var positions = [];
+    for (var i in A) {
+        var current = A[i];
+        if(!positions[current]) {
+            positions[current] = true;
+            sum += current;
+            console.log(i + ", current=" + A[i] + ", sum=" + sum)   
+            if (sum == expected) {
+                return +i;
             }
         }
     }
-    return result
-    
+    return -1;
 }
