@@ -61,7 +61,6 @@ function solution(X, A) {
         if(!positions[current]) {
             positions[current] = true;
             sum += current;
-            console.log(i + ", current=" + A[i] + ", sum=" + sum)   
             if (sum == expected) {
                 return +i;
             }
